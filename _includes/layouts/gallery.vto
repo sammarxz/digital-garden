@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>{{ title }} - {{ site.title }}</title>
+
+  <!-- SEO Meta Tags -->
+  <meta name="description" content="Galeria de trabalhos de design de interface">
+  <meta name="author" content="{{ site.author }}">
+
+  <!-- Theme Color -->
+  <meta name="theme-color" content="#eee" media="(prefers-color-scheme: light)">
+  <meta name="theme-color" content="#0d0d0d" media="(prefers-color-scheme: dark)">
+
+  <!-- Styles (inlined for performance) -->
+  <link rel="stylesheet" href="/styles.css" inline>
+
+  <!-- Favicon -->
+  <link rel="icon" type="image/x-icon" href="/favicon.ico">
+</head>
+<body class="gallery-page">
+  <a href="/" onclick="event.preventDefault(); history.back();" class="back-button"><i>../</i></a>
+
+  <main class="gallery-container">
+    {{ content }}
+  </main>
+</body>
+</html>
