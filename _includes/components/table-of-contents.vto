@@ -1,0 +1,120 @@
+<nav class="table-of-contents" id="toc">
+  <ul id="toc-list"></ul>
+</nav>
+
+<script>
+  document.addEventListener('DOMContentLoaded', function() {
+    const article = document.querySelector('article [itemprop="articleBody"]');
+    const tocList = document.getElementById('toc-list');
+    const toc = document.getElementById('toc');
+
+    if (!article || !tocList) return;
+
+    // Find all headings (h2, h3, h4)
+    const headings = article.querySelectorAll('h2, h3, h4');
+
+    if (headings.length === 0) {
+      toc.style.display = 'none';
+      return;
+    }
+
+    headings.forEach((heading, index) => {
+      // Add ID to heading if it doesn't have one
+      if (!heading.id) {
+        heading.id = `heading-${index}`;
+      }
+
+      // Clean title text (remove backticks)
+      const cleanText = heading.textContent.trim().replace(/^`+\s*/, '');
+
+      const li = document.createElement('li');
+      li.className = `toc-${heading.tagName.toLowerCase()}`;
+
+      const a = document.createElement('a');
+      a.href = `#${heading.id}`;
+      a.setAttribute('data-title', cleanText);
+
+      // Smooth scroll on click
+      a.addEventListener('click', (e) => {
+        e.preventDefault();
+        heading.scrollIntoView({
+          behavior: 'smooth',
+          block: 'start'
+        });
+        // Use replaceState to update URL without adding to history
+        history.replaceState(null, null, `#${heading.id}`);
+      });
+
+      const dash = document.createElement('span');
+      dash.className = 'toc-dash';
+
+      const tooltip = document.createElement('span');
+      tooltip.className = 'toc-tooltip';
+      tooltip.textContent = cleanText;
+
+      a.appendChild(dash);
+      a.appendChild(tooltip);
+      li.appendChild(a);
+      tocList.appendChild(li);
+    });
+
+    // Scroll spy - mark active section
+    const updateActiveLink = () => {
+      const scrollPosition = window.scrollY;
+      const windowHeight = window.innerHeight;
+      const documentHeight = document.documentElement.scrollHeight;
+
+      // Check if we're at the bottom of the page
+      const isAtBottom = scrollPosition + windowHeight >= documentHeight - 10;
+
+      // Check if we're at the top of the page
+      const isAtTop = scrollPosition < 100;
+
+      let currentActive = null;
+
+      if (isAtBottom) {
+        // Activate the last heading
+        currentActive = headings[headings.length - 1].id;
+      } else if (isAtTop) {
+        // Activate the first heading
+        currentActive = headings[0].id;
+      } else {
+        // Find the current active heading based on scroll position
+        const threshold = scrollPosition + windowHeight / 3;
+
+        headings.forEach(heading => {
+          const headingTop = heading.offsetTop;
+
+          if (threshold >= headingTop) {
+            currentActive = heading.id;
+          }
+        });
+      }
+
+      if (currentActive) {
+        // Remove active from all
+        tocList.querySelectorAll('a').forEach(a => a.classList.remove('active'));
+        // Add active to current
+        const tocLink = tocList.querySelector(`a[href="#${currentActive}"]`);
+        if (tocLink) {
+          tocLink.classList.add('active');
+        }
+      }
+    };
+
+    // Update on scroll
+    let ticking = false;
+    window.addEventListener('scroll', () => {
+      if (!ticking) {
+        window.requestAnimationFrame(() => {
+          updateActiveLink();
+          ticking = false;
+        });
+        ticking = true;
+      }
+    });
+
+    // Initial update
+    updateActiveLink();
+  });
+</script>
