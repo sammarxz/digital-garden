@@ -31,14 +31,14 @@ html {
   --lh: 1.5em;
 
   /* Colors */
-  --textLight: #888;
+  --textLight: #555;
   --textColor: #000;
   --bgColor: #eee;
-  --borderColor: #d5d5d5;
+  --borderColor: #949494;
   --highlightColor: #e5e5e5;
   --selectionBg: #ddd;
   --selectionColor: #000;
-  --badgeColor: #666;
+  --badgeColor: #555;
 }
 
 ::selection {
