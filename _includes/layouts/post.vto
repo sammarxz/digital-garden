@@ -1,0 +1,22 @@
+---
+layout: layouts/base.vto
+type: article
+---
+
+{{ include "components/table-of-contents.vto" }}
+
+<article itemscope itemtype="https://schema.org/BlogPosting">
+  <header>
+    <h1 itemprop="headline">{{ title }}</h1>
+  </header>
+
+  <p>-</p>
+
+  <div itemprop="articleBody">
+    {{ content }}
+  </div>
+
+  <time datetime="{{ date |> date('yyyy-MM-dd') }}" itemprop="datePublished">
+    {{ date |> date('dd/MM/yyyy') }}
+  </time>
+</article>
