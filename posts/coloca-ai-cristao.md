@@ -2,7 +2,7 @@
 title: "Coloca aí: 'Cristão'"
 description: ou sobre a diferença entre religião e espiritualidade
 date: 2025-08-21
-category: "reflexões"
+category: "espiritualidade"
 ---
 
 Semana passada, me peguei rindo de uma memória recente. Foi na conversa pré-matrimonial com o padre, no mês passado. O padre me chamou em particular, com seu formulário, começou a fazer as perguntas de praxe. Tudo corria bem até ele chegar naquela questão aparentemente simples: "Qual sua religião?"
