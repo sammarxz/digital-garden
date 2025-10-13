@@ -18,6 +18,26 @@
       return;
     }
 
+    // Add Index link at the top
+    const indexLi = document.createElement('li');
+    indexLi.className = 'toc-h2';
+
+    const indexLink = document.createElement('a');
+    indexLink.href = '/';
+    indexLink.setAttribute('data-title', 'Index');
+
+    const indexDash = document.createElement('span');
+    indexDash.className = 'toc-dash';
+
+    const indexTooltip = document.createElement('span');
+    indexTooltip.className = 'toc-tooltip';
+    indexTooltip.textContent = 'Index';
+
+    indexLink.appendChild(indexDash);
+    indexLink.appendChild(indexTooltip);
+    indexLi.appendChild(indexLink);
+    tocList.appendChild(indexLi);
+
     headings.forEach((heading, index) => {
       // Add ID to heading if it doesn't have one
       if (!heading.id) {
