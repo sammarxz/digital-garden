@@ -1,7 +1,7 @@
 ---
 layout: layouts/base.vto
 title: posts
-description: Todos os artigos sobre literatura, design, desenvolvimento, reflexões e vida
+description: All articles about literature, design, development, reflections, and life
 url: /posts/
 templateEngine: vto,md
 ---

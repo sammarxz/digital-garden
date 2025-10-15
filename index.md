@@ -1,7 +1,7 @@
 ---
 layout: layouts/base.vto
-title: Início
-description: Digital Garden - Reflexões sobre literatura, design, desenvolvimento, produtividade e vida
+title: Home
+description: Digital Garden - Thoughts on literature, design, development, productivity, and life
 templateEngine: vto,md
 ---
 
